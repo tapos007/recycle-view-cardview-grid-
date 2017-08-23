@@ -3,8 +3,10 @@ package com.example.tapos.recyclercardviewgrid.app;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -57,12 +59,26 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-//        if (id == R.id.search_menu_id) {
-//            Toast.makeText(MainActivity.this, "search App", Toast.LENGTH_LONG).show();
-//        }
-//        if(id == R.id.cart_menu_id){
-//            Toast.makeText(MainActivity.this, "cart App", Toast.LENGTH_LONG).show();
-//        }
+        if (id == R.id.linerViewHorizontal) {
+            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+            linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+            recyclerView.setLayoutManager(linearLayoutManager);
+        }else if(id == R.id.linerViewVertical){
+            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+            linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+            recyclerView.setLayoutManager(linearLayoutManager);
+        }
+        else if(id==R.id.GridView){
+            GridLayoutManager gridLayoutManager = new GridLayoutManager(this,2);
+            recyclerView.setLayoutManager(gridLayoutManager);
+        }
+        else if(id == R.id.staggeredViewHorizontal){
+            StaggeredGridLayoutManager staggeredGridLayoutManager = new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.HORIZONTAL);
+            recyclerView.setLayoutManager(staggeredGridLayoutManager);
+        }else if(id == R.id.staggeredViewVertical){
+            StaggeredGridLayoutManager staggeredGridLayoutManager = new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL);
+            recyclerView.setLayoutManager(staggeredGridLayoutManager);
+        }
 
         return super.onOptionsItemSelected(item);
     }
